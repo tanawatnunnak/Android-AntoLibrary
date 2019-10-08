@@ -14,13 +14,15 @@ class AntoReference(private var key: String, private var thing: String, private 
         val runnable = Runnable {
             antoService.getValue(key, thing, channel).enqueue(object : Callback<ResponseAnto> {
                 override fun onFailure(call: Call<ResponseAnto>, t: Throwable) {
-                    valueEventListener.onCancelled(t.message)
+                    t.message?.let { valueEventListener.onCancelled(it) }
                 }
 
                 override fun onResponse(call: Call<ResponseAnto>, response: Response<ResponseAnto>) {
-                    if (responseAnto != response.body()) {
-                        responseAnto = response.body()!!
-                        valueEventListener.onDataChange(response.body())
+                    response.body()?.let {
+                        if (responseAnto != it) {
+                            responseAnto = it
+                            valueEventListener.onDataChange(it)
+                        }
                     }
                 }
             })
@@ -37,11 +39,11 @@ class AntoReference(private var key: String, private var thing: String, private 
     fun addSingleValueEventListener(valueEventListener: ValueEventListener) {
         antoService.getValue(key, thing, channel).enqueue(object : Callback<ResponseAnto> {
             override fun onFailure(call: Call<ResponseAnto>, t: Throwable) {
-                valueEventListener.onCancelled(t.message)
+                t.message?.let { valueEventListener.onCancelled(it) }
             }
 
             override fun onResponse(call: Call<ResponseAnto>, response: Response<ResponseAnto>) {
-                valueEventListener.onDataChange(response.body())
+                response.body()?.let { valueEventListener.onDataChange(it) }
             }
 
         })
@@ -58,11 +60,11 @@ class AntoReference(private var key: String, private var thing: String, private 
     fun setValue(value: String, valueEventListener: ValueEventListener) {
         antoService.setValue(key, thing, channel, value).enqueue(object : Callback<ResponseAnto> {
             override fun onFailure(call: Call<ResponseAnto>, t: Throwable) {
-                valueEventListener.onCancelled(t.message)
+                t.message?.let { valueEventListener.onCancelled(it) }
             }
 
             override fun onResponse(call: Call<ResponseAnto>, response: Response<ResponseAnto>) {
-                valueEventListener.onDataChange(response.body())
+                response.body()?.let { valueEventListener.onDataChange(it) }
             }
 
         })

@@ -30,42 +30,35 @@ class MainActivity : AppCompatActivity() {
     private fun initialView() {
         antoReference = Anto.getInstance().getReference(KEY, THING)
         temperature = antoReference.addChannel(CHANNEL_TEMPERATURE).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(responseAnto: ResponseAnto?) {
-                responseAnto?.let {
-                    text_value_temperature.text = responseAnto.value
-                }
+            override fun onDataChange(responseAnto: ResponseAnto) {
+                text_value_temperature.text = responseAnto.value
             }
 
-            override fun onCancelled(dataBaseError: String?) {
+            override fun onCancelled(dataBaseError: String) {
 
             }
         })
 
         humidity = antoReference.addChannel(CHANNEL_HUMIDITY).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(responseAnto: ResponseAnto?) {
-                responseAnto?.let {
-                    text_value_humidity.text = responseAnto.value
-                }
+            override fun onDataChange(responseAnto: ResponseAnto) {
+                text_value_humidity.text = responseAnto.value
             }
 
-            override fun onCancelled(dataBaseError: String?) {
+            override fun onCancelled(dataBaseError: String) {
 
             }
         })
 
         bedroom = antoReference.addChannel(CHANNEL_BEDROOM).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(responseAnto: ResponseAnto?) {
-                responseAnto?.let {
-                    text_value_bedroom.text = when (responseAnto.value) {
+            override fun onDataChange(responseAnto: ResponseAnto) {
+                text_value_bedroom.text = when (responseAnto.value) {
                         "1" -> "เปิด".also { button_stop_read_anto.text = "OFF" }
                         else -> "ปิด".also { button_stop_read_anto.text = "ON" }
-                    }
                 }
             }
 
-            override fun onCancelled(dataBaseError: String?) {
+            override fun onCancelled(dataBaseError: String) {
             }
-
         })
 
         button_stop_read_anto.setOnClickListener {
