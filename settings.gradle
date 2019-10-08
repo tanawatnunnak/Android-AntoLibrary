@@ -1,0 +1,2 @@
+include ':app', ':anto'
+rootProject.name='anto-android'

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_title_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="อุณหภูมิ" />
+
+        <TextView
+            android:id="@+id/text_value_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/text_title_temperature"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/text_unit_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/text_value_temperature"
+            android:text="C" />
+
+
+        <TextView
+            android:id="@+id/text_title_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_title_temperature"
+            android:text="ความชื้น" />
+
+        <TextView
+            android:id="@+id/text_value_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/text_title_humidity"
+            android:layout_alignTop="@id/text_title_humidity"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/text_unit_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/text_value_humidity"
+            android:layout_alignTop="@id/text_title_humidity"
+            android:text="%" />
+
+        <TextView
+            android:id="@+id/text_bedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/text_title_humidity"
+            android:text="ไฟห้องนอน" />
+
+        <TextView
+            android:id="@+id/text_value_bedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/text_bedroom"
+            android:layout_alignTop="@id/text_bedroom"
+            android:text="ปิด" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_stop_read_anto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On" />
+
+</LinearLayout>
